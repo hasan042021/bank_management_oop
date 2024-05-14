@@ -122,12 +122,12 @@ class Admin(Account):
         print(f"Total balance of {bank.name} - {bank.get_total_balance}BDT")
 
     def switch_loan_status(self, bank):
-        bank.status = not bank.status
-        print("Loan status changed")
+        bank.isLoanOn = not bank.isLoanOn
+        print(f"Loan status changed to {'on' if bank.isLoanOn else 'off'} ")
 
     def check_total_loan(self, bank):
-        print(bank.get_total_loan)
+        print(f"Total Loan Amount is {bank.get_total_loan}BDT")
 
     def declare_bankruptcy(self, bank):
         bank.isBankrupt = not bank.isBankrupt
-        print("Bankruptcy status changed")
+        print(f"Bankruptcy status changed to {'on' if bank.isBankrupt else 'off'}")

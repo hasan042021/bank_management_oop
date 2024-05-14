@@ -48,20 +48,26 @@ while True:
             elif op == 4:
                 cur_user.get_transaction_history()
             elif op == 5:
-                acc_num = input("Enter Reciever's Account Number: ")
-                reciever = c_bank.find_an_user(acc_num)
-                if reciever:
-                    amount = int(input("Enter the Amount: "))
-                    cur_user.transfer_money(amount, reciever, c_bank)
-                    c_bank.target_user = None
+                if not c_bank.isBankrupt:
+                    acc_num = input("Enter Reciever's Account Number: ")
+                    reciever = c_bank.find_an_user(acc_num)
+                    if reciever:
+                        amount = int(input("Enter the Amount: "))
+                        cur_user.transfer_money(amount, reciever, c_bank)
+                        c_bank.target_user = None
+                    else:
+                        print("This account does not exist")
                 else:
-                    print("This account does not exist")
+                    print("Bank is Bankrupt")
             elif op == 6:
-                if c_bank.isLoanOn:
-                    amount = int(input("Enter the amount: "))
-                    cur_user.take_loan(amount, c_bank)
+                if not c_bank.isBankrupt:
+                    if c_bank.isLoanOn:
+                        amount = int(input("Enter the amount: "))
+                        cur_user.take_loan(amount, c_bank)
+                    else:
+                        print("Loan is not available right now")
                 else:
-                    print("Loan is not available right now")
+                    print("Bank is Bankrupt")
             elif op == 7:
                 cur_user.show_account_number()
             elif op == 8:
@@ -83,7 +89,7 @@ while True:
             op = int(input("Enter Your Choice: "))
             if op == 1:
                 account_number = input("Enter user account number: ")
-                cur_user.delete_an_user(c_bank, account_number)
+                cur_user.delete_an_user(c_bank.users, account_number)
             elif op == 2:
                 cur_user.show_all_users(c_bank)
             elif op == 3:
