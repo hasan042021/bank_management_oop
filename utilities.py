@@ -25,6 +25,7 @@ def auth(bank, Admin_Class, User_Class):
                 "savings" if u_type == 1 else "current",
             )
             bank.add_user(user)
+            user.show_account_number()
             return user
         if acc == 2:
             admin = Admin_Class(u_name, u_email, u_address, u_password)

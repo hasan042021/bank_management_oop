@@ -46,7 +46,7 @@ class User(Account):
         for transaction in self.transactions:
             if transaction.type == "Transfer":
                 print(
-                    f"Transaction ID:{transaction.transaction_id} Transaction type: {transaction.type} Amount: {transaction.amount}  Reciever: {transaction.reciever}"
+                    f"Transaction ID:{transaction.transaction_id}, Transaction type: {transaction.type}, Amount: {transaction.amount},  Reciever: {transaction.reciever['account_number']}"
                 )
             else:
                 print(
@@ -98,7 +98,7 @@ class User(Account):
         self.transactions.append(transaction)
 
     def show_account_number(self):
-        print(f"My Account Number is: {self.account_number}")
+        print(f"Your account number is: {self.account_number}")
 
 
 class Admin(Account):
